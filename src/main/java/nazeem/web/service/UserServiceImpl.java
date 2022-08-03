@@ -44,7 +44,7 @@ public class UserServiceImpl implements IUserService{
                 ,registrationDto.getLastName()
                 , registrationDto.getUserName()
                 ,passwordEncoder.encode(registrationDto.getPassword())
-                , Arrays.asList(roleRepository.findByName("ADMIN")));
+                , Arrays.asList(roleRepository.findByName("USER")));
 
         return userRepository.save(user);
     }

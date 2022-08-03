@@ -24,14 +24,14 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     private IUserService userService;
 
     @Bean
-    public BCryptPasswordEncoder () {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsServicepasswordEncoder(userService);
+        auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
@@ -45,14 +45,14 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
-                "/register**",
-                "/dist/**"
-                , "/plugins/**"
-                , "/bootstrap/**"
-                , "/extra/**"
-                , "/favicon.ico")
+                        "/register**",
+                        "/dist/**"
+                        , "/plugins/**"
+                        , "/bootstrap/**"
+                        , "/extra/**"
+                        , "/favicon.ico")
                 .permitAll()
-        .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -68,7 +68,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     }
     public void configure(WebSecurity web) throws Exception {
-       // web.ignoring().antMatchers("/resources/static/**").anyRequest();
+        // web.ignoring().antMatchers("/resources/static/**").anyRequest();
     }
 
 }
