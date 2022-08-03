@@ -32,4 +32,10 @@ public class VenteController {
         //listProducts.forEach(System.out::println);
         return mav;
     }
+
+    @GetMapping("/removeProduct")
+    public String removeProduct(@RequestParam Long productId) {
+        saleRepo.removeProduct(productId);
+        return "redirect:/venteList";
+    }
 }
