@@ -44,7 +44,7 @@ public class ProductController {
 	@PostMapping("/saveProduct")
 	public String saveProduct(@ModelAttribute Product product) {
 		Category category = new Category();
-		cRepo.save(category);
+		//cRepo.save(category);
 		eRepo.save(product);
 		return "redirect:/productList";
 	}
